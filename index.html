@@ -4,9 +4,19 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 	<script src="js/rem.js"></script>
+	<style type="text/css">	
+		.font{
+		    position: absolute;
+		    font-size: .16rem;
+		    font-weight: bold;
+		    z-index: 99;
+		    white-space: nowrap;
+		}
+	</style>
 </head>
 <body>
 	<div class="header">
@@ -211,6 +221,37 @@
 		dz.onclick=function(){
 			location.href="fy4.html"
 		}
+
+
+
+
+		  function show() {
+            var ofont = $("<p class='font'></p>");
+            var r = Math.random() * 256,
+                g = Math.random() * 256,
+                b = Math.random() * 256,
+                s1 = Math.floor(Math.random()*(99-10+1)+10),
+                s2 =  Math.floor(Math.random()*(9999-1000+1)+1000);
+
+            var arr = ['1'+s1+'****'+s2+'注册成功'];
+
+            ofont.text(arr[Math.floor(Math.random() * arr.length)]);
+            ofont.css("color", "rgb(" + r + "," + g + "," + b + ")");
+            ofont.offset({
+                    "top": Math.random() * $(".header").height(),
+                    "left": $(".header").width()
+                })
+                .animate({
+                    left: -$(".header").width()
+                }, 10000, function () {
+                    ofont.remove()
+                });
+            ofont.appendTo($(".header"));
+        }
+        var timer = null;
+        clearInterval(timer);
+        timer = setInterval(show, 1000);
+
 	</script>
 </body>
 </html>
